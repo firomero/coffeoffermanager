@@ -61,7 +61,7 @@ class Oferta
 
     /**
      * Get id
-     *
+     *resumes de id
      * @return integer 
      */
     public function getId()
