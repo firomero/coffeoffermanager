@@ -1,3 +1,7 @@
 backend_homepage:
     pattern:  /hello/{name}
     defaults: { _controller: BackendBundle:Default:index }
+
+backend_bundle_oferta:
+    resource: "@BackendBundle/Resources/config/routing/oferta.yml"
+    prefix: /oferta

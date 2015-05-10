@@ -5,3 +5,5 @@ services:
 #    backend.example:
 #        class: %backend.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+     oferta.namer:
+         class: Fran\BackendBundle\Namer\OfertaNamer

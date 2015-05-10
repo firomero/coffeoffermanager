@@ -3,12 +3,15 @@
 namespace Fran\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * Oferta
  *
  * @ORM\Table()
  * @ORM\Entity
+ *  @Vich\Uploadable
  */
 class Oferta
 {
@@ -42,6 +45,15 @@ class Oferta
      * @ORM\JoinColumn(name="menu", referencedColumnName="id")
      */
     private $menu;
+
+    /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     *
+     * @Vich\UploadableField(mapping="imageFile", fileNameProperty="imagen")
+     *
+     * @var File $imageFile
+     */
+    protected $imageFile;
 
     /**
      * @return int
@@ -114,4 +126,27 @@ class Oferta
     {
         return $this->imagen;
     }
+
+    /**
+     * If manually uploading a file (i.e. not using Symfony Form) ensure an instance
+     * of 'UploadedFile' is injected into this setter to trigger the  update. If this
+     * bundle's configuration parameter 'inject_on_load' is set to 'true' this setter
+     * must be able to accept an instance of 'File' as the bundle will inject one here
+     * during Doctrine hydration.
+     *
+     * @param File|\Symfony\Component\HttpFoundation\File\UploadedFile $image
+     */
+    public function setImageFile(File $image = null)
+    {
+        $this->imageFile = $image;
+    }
+
+    /**
+     * @return File
+     */
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
 }
