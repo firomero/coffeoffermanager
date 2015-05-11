@@ -39,7 +39,9 @@ class Menu
     private $usuario;
 
     /**
-     * @ORM\OneToMany(targetEntity="Oferta", mappedBy="menu")
+     * Inverse Side
+     *
+     * @ORM\ManyToMany(targetEntity="Oferta", mappedBy="menu")
      */
     protected $ofertas;
 

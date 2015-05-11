@@ -25,6 +25,8 @@ framework:
 twig:
     debug:            %kernel.debug%
     strict_variables: %kernel.debug%
+    form:
+        resource: 'VichUploaderBundle:Form:fields.html.twig'
 
 # Assetic Configuration
 assetic:
@@ -64,3 +66,22 @@ swiftmailer:
     username:  %mailer_user%
     password:  %mailer_password%
     spool:     { type: memory }
+#FOS CONFIG
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Fran\BackendBundle\Entity\Usuario
+
+#VICH
+vich_uploader:
+    db_driver: orm
+    twig: true
+    mappings:
+        imageFile:
+            uri_prefix:         /framboyan/web/public/images
+            upload_destination: %kernel.root_dir%/../web/public/images
+            namer: oferta.namer
+
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true

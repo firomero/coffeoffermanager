@@ -38,11 +38,16 @@ class Oferta
      */
     private $imagen;
 
+
+
     /**
-     * @var integer
-     *
-     * @ORM\ManyToOne(targetEntity="Menu", inversedBy="ofertas")
-     * @ORM\JoinColumn(name="menu", referencedColumnName="id")
+     * Owning Side
+     *@var integer
+     * @ORM\ManyToMany(targetEntity="Menu", inversedBy="ofertas")
+     * @ORM\JoinTable(name="menu_oferta",
+     *      joinColumns={@ORM\JoinColumn(name="oferta_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="menu_id", referencedColumnName="id")}
+     *      )
      */
     private $menu;
 
