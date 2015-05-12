@@ -103,6 +103,28 @@ class Menu
         return $this->nombre;
     }
 
+    public function getOfertas()
+    {
+        return $this->ofertas;
+    }
+
+    public function setOfertas( ArrayCollection $ofertas)
+    {
+        $this->ofertas = $ofertas;
+        return $this;
+    }
+
+    public function addOfertas(Oferta $oferta)
+    {
+        $this->ofertas->add($oferta);
+    }
+
+    public function removeOferta(Oferta $oferta)
+    {
+        $this->ofertas->remove($oferta->getId());
+        return $this;
+    }
+
     public function __toString()
     {
         return $this->nombre;

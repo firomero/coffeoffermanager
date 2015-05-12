@@ -15,6 +15,8 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
  */
 class Oferta
 {
+
+
     /**
      * @var integer
      *
@@ -23,6 +25,29 @@ class Oferta
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="nombre", type="string", length=255)
+     */
+    private $nombre;
+
+    /**
+     * @return string
+     */
+    public function getNombre()
+    {
+        return $this->nombre;
+    }
+
+    /**
+     * @param string $nombre
+     */
+    public function setNombre($nombre)
+    {
+        $this->nombre = $nombre;
+    }
 
     /**
      * @var string
@@ -152,6 +177,11 @@ class Oferta
     public function getImageFile()
     {
         return $this->imageFile;
+    }
+
+    public function __toString()
+    {
+        return $this->nombre;
     }
 
 }

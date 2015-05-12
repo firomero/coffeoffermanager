@@ -17,6 +17,7 @@ class MenuType extends AbstractType
         $builder
             ->add('nombre')
             ->add('usuario')
+            ->add('ofertas')
         ;
     }
     
