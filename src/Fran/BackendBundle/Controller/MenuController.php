@@ -2,7 +2,10 @@
 
 namespace Fran\BackendBundle\Controller;
 
+
+
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Fran\BackendBundle\Entity\Menu;
@@ -220,5 +223,68 @@ class MenuController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    /*AJAX REQUEST*/
+    public function addMenuAction(Request $request)
+    {
+        $menuName = $request->get('menuName');
+
+       try{
+           if (!is_null($menuName)) {
+               $menu = new Menu();
+               $menu->setNombre($menuName);
+               $validator = $this->get('validator');
+               $errors = $validator->validate($menu);
+               if (count($errors)>0) {
+                   return new Response(json_encode(array('msg'=>'Empty Parameter')), 400);
+               }
+               $em = $this->get('doctrine')->getManager();
+               $em->persist($menu);
+               $em->flush();
+               return new Response(json_encode(array('msg'=>'OK'),200));
+
+           }
+           else{
+               return new Response(json_encode(array('msg'=>'Empty Parameter')), 400);
+           }
+
+       }
+       catch(\Exception $error)
+       {
+           return new Response(json_encode(array('msg'=>$error->getMessage())), 500);
+       }
+    }
+
+    public function editMenuAction(Request $request)
+    {
+        $menuId = $request->get('id');
+        $menuName = $request->get('menuName');
+
+        try{
+            if (!is_null($menuId)&&!is_null($menuName)) {
+                $em = $this->get('doctrine')->getManager();
+                $menu = $em->getRepository('BackendBundle:Menu')->find($menuId);
+                $menu->setNombre($menuName);
+                $validator = $this->get('validator');
+                $errors = $validator->validate($menu);
+                if (count($errors)>0) {
+                    return new Response(json_encode(array('msg'=>'Empty Parameter')), 400);
+                }
+
+                $em->persist($menu);
+                $em->flush();
+                return new Response(json_encode(array('msg'=>'OK'),206));
+
+            }
+            else{
+                return new Response(json_encode(array('msg'=>'Empty Parameter')), 400);
+            }
+
+        }
+        catch(\Exception $error)
+        {
+            return new Response(json_encode(array('msg'=>$error->getMessage())), 500);
+        }
     }
 }

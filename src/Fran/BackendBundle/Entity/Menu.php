@@ -4,12 +4,15 @@ namespace Fran\BackendBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
 
 /**
  * Menu
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @DoctrineAssert\UniqueEntity("nombre")
  */
 class Menu
 {
@@ -26,6 +29,9 @@ class Menu
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=255)
+     *  @Assert\Regex(pattern="/[A-Za-z0-9]/")
+     * @Assert\Length( min =3 )
+     * @Assert\NotBlank(message = "Por favor, escriba el nombre" )
      */
     private $nombre;
 
@@ -128,5 +134,13 @@ class Menu
     public function __toString()
     {
         return $this->nombre;
+    }
+
+    public function Normalized()
+    {
+        return array(
+            $this->getId(),
+            $this->getNombre(),
+        );
     }
 }

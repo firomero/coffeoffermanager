@@ -1,7 +1,8 @@
 <?php
 
 namespace Fran\BackendBundle\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints as DoctrineAssert;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
@@ -30,6 +31,9 @@ class Oferta
      * @var string
      *
      * @ORM\Column(name="nombre", type="string", length=255)
+     * @Assert\Regex(pattern="/[A-Za-z0-9]/", groups={"textos"})
+     * @Assert\Length( min =3 ,groups={"textos"})
+     * @Assert\NotBlank(message = "Por favor, escriba el nombre" ,groups={"textos"})
      */
     private $nombre;
 
@@ -172,6 +176,7 @@ class Oferta
     }
 
     /**
+     * Devuelve el fichero
      * @return File
      */
     public function getImageFile()
@@ -182,6 +187,16 @@ class Oferta
     public function __toString()
     {
         return $this->nombre;
+    }
+
+    public function Normalized()
+    {
+        return array(
+            $this->getId(),
+            $this->getNombre(),
+            $this->getDescripcion(),
+            $this->getImagen()
+        );
     }
 
 }

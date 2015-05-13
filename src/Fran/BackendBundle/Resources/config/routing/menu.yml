@@ -28,3 +28,18 @@ menu_delete:
     path:     /{id}/delete
     defaults: { _controller: "BackendBundle:Menu:delete" }
     requirements: { _method: post|delete }
+
+
+#AJAX
+menu_ajax_add:
+    path: /add/issue/
+    defaults: { _controller: "BackendBundle:Menu:addMenu"  }
+    requirements: { _method: post }
+    options:
+        expose: true
+menu_ajax_edit:
+    path: /edit/issue/
+    defaults: { _controller: "BackendBundle:Menu:editMenu"  }
+    requirements: { _method: post }
+    options:
+        expose: true

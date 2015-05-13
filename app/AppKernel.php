@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new Fran\BackendBundle\BackendBundle(),
             new Fran\FrontendBundle\FrontendBundle(),
             new FOS\UserBundle\FOSUserBundle(),
+            new FOS\JsRoutingBundle\FOSJsRoutingBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
         );
 
