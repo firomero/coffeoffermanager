@@ -1,4 +1,4 @@
-{% extends '::base.html.twig' %}
+{% extends 'BackendBundle::layout.html.twig' %}
 
 {% block content -%}
 
@@ -28,11 +28,12 @@
                                 <tbody>
                                 {% for entity in entities %}
                                     <tr class="gradeA" >
-                                        <td>{{ entity.nombre }}</td>
-                                        <td>
+                                        <td class="name{{ entity.id }}">{{ entity.nombre }}</td>
+                                        <td class="actions">
                                             <div class="hidden-phone visible-desktop btn-group">
-                                                <button class="btn btn-mini edit" title="Editar" data-id="{{ entity.id }}"><i class="icon-edit"></i></button>
-                                                <button class="btn btn-mini delete" title="Editar" data-id="{{ entity.id }}"><i class="icon-trash" ></i></button>
+                                                <button class="btn btn-mini assign" title="Asginar Ofertas" ><i class="icon-list"></i></button>
+                                                <button class="btn btn-mini edit" title="Editar" data-id="{{ entity.id }}" data-name="{{ entity.nombre }}"><i class="icon-edit"></i></button>
+                                                <button class="btn btn-mini delete" title="Eliminar" data-id="{{ entity.id }}"><i class="icon-trash" ></i></button>
                                             </div>
                                         </td>
                                     </tr>
@@ -60,6 +61,7 @@
                 <div class="modal-body" >
                     <label for="menuText">Nombre</label>
                     <input type="text" id="menuText" placeholder="Menu"/>
+                    <div class="se-pre-con hidden"></div>
                 </div>
                 <div class="modal-footer">
                     <button data-dismiss="modal" class="btn btn-default" type="button">Cerrar</button>
@@ -70,8 +72,10 @@
     </div>
     {% endblock %}
 {% block JavaScriptInline %}
+    {{ parent() }}
     <script src="{{ asset('bundles/backend/js/menu.js') }}"></script>
 {% endblock JavaScriptInline%}
 {% block  stylesheet %}
+    {{ parent() }}
     <link href="{{asset('bundles/backend/css/menu.css')}}" rel="stylesheet" />
 {% endblock stylesheet %}

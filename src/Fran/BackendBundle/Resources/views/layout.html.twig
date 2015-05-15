@@ -1,0 +1,47 @@
+{# Twig template #}
+{% extends '::base.html.twig' %}
+{#Menu#}
+ {% block menu %}
+     {#<div class="media user-media well-small">#}
+     {#<ul id="menu" class="collapse">#}
+     {#<li class="panel active">#}
+         {#<a href="index.html" ><i class="icon-table"></i> Inicio </a>#}
+     {#</li>#}
+     {#<li><a href="gallery.html"><i class="icon-film"></i> Oferta</a></li>#}
+     {#<li><a href="tables.html"><i class="icon-table"></i> Menu </a></li>#}
+     {#</ul>#}
+
+ {#</div>#}
+     </div>
+     <!--END MENU SECTION -->
+ {% endblock %}
+
+ {#Right Content#}
+ {% block right %}
+ {% endblock %}
+{#First Row#}
+ {% block Shortcut %}
+     <div class="row first-row">
+         <div class="col-lg-12">
+             <div style="text-align: center;">
+
+                 <a class="quick-btn" href="{{ path('menu') }}">
+                     <i class="icon-check icon-2x"></i>
+                     <span> Products</span>
+                     <span class="label label-danger">2</span>
+                 </a>
+
+                 <a class="quick-btn" href="{{ path('oferta') }}">
+                     <i class="icon-envelope icon-2x"></i>
+                     <span>Messages</span>
+                     <span class="label label-success">456</span>
+                 </a>
+             </div>
+
+         </div>
+         <hr />
+     </div>
+{% endblock %}
+ {% block  stylesheet %}
+     <link href="{{asset('public/css/extends.css')}}" rel="stylesheet" />
+ {% endblock stylesheet %}

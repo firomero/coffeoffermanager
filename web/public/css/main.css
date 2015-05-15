@@ -660,6 +660,7 @@ font-weight: bolder;
   min-height:1200px;
 }
 
+
 @media (min-width: 768px) {
   .inner {
     float: left;
