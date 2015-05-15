@@ -78,6 +78,7 @@ body {
 }
 #login {
     margin-top:30px;
+
 }
 
 #forgot {
@@ -91,5 +92,5 @@ body {
 #logoimg {
   width: 315px;
 height: 51px;
-padding-left: 33px
+/*padding-left: 33px*/
 }
