@@ -22,11 +22,14 @@ class OfertaController extends Controller
     public function indexAction()
     {
         $em = $this->getDoctrine()->getManager();
+        $entity = new Oferta();
+        $form   = $this->createCreateForm($entity);
 
         $entities = $em->getRepository('BackendBundle:Oferta')->findAll();
 
         return $this->render('BackendBundle:Oferta:index.html.twig', array(
             'entities' => $entities,
+            'form'=>$form->createView()
         ));
     }
     /**
@@ -44,7 +47,7 @@ class OfertaController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('oferta_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('oferta'));
         }
 
         return $this->render('BackendBundle:Oferta:new.html.twig', array(
@@ -67,7 +70,7 @@ class OfertaController extends Controller
             'method' => 'POST',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Create'));
+//        $form->add('submit', 'submit', array('label' => 'Create'));
 
         return $form;
     }
@@ -220,5 +223,72 @@ class OfertaController extends Controller
             ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
+    }
+
+    /*AJAX REQUEST*/
+    public function addOfertaAction(Request $request)
+    {
+        $ofertaName = $request->get('ofertaName');
+        $ofertaDescripcion = $request->get('ofertaDescripcion');
+//        $ofertaImage = $request->ge
+        $ofertaPrecio = $request->get('ofertaPrecio');
+
+        try{
+            if (!is_null($ofertaName)) {
+                $oferta = new Oferta();
+                $oferta->setNombre($ofertaName);
+                $oferta->setDescripcion($ofertaDescripcion);
+                $validator = $this->get('validator');
+                $errors = $validator->validate($oferta);
+                if (count($errors)>0) {
+                    return new Response(json_encode(array('msg'=>'Empty Parameter')), 400);
+                }
+                $em = $this->get('doctrine')->getManager();
+                $em->persist($ofertaName);
+                $em->flush();
+                return new Response(json_encode(array('msg'=>'OK'),200));
+
+            }
+            else{
+                return new Response(json_encode(array('msg'=>'Empty Parameter')), 400);
+            }
+
+        }
+        catch(\Exception $error)
+        {
+            return new Response(json_encode(array('msg'=>$error->getMessage())), 500);
+        }
+    }
+
+    public function editMenuAction(Request $request)
+    {
+        $menuId = $request->get('id');
+        $menuName = $request->get('ofertaName');
+
+        try{
+            if (!is_null($menuId)&&!is_null($menuName)) {
+                $em = $this->get('doctrine')->getManager();
+                $menu = $em->getRepository('BackendBundle:Oferta')->find($menuId);
+                $menu->setNombre($menuName);
+                $validator = $this->get('validator');
+                $errors = $validator->validate($menu);
+                if (count($errors)>0) {
+                    return new Response(json_encode(array('msg'=>'Empty Parameter')), 400);
+                }
+
+                $em->persist($menu);
+                $em->flush();
+                return new Response(json_encode(array('msg'=>'OK'),206));
+
+            }
+            else{
+                return new Response(json_encode(array('msg'=>'Empty Parameter')), 400);
+            }
+
+        }
+        catch(\Exception $error)
+        {
+            return new Response(json_encode(array('msg'=>$error->getMessage())), 500);
+        }
     }
 }

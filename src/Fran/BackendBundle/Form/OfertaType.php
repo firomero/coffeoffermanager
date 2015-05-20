@@ -15,12 +15,14 @@ class OfertaType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('descripcion')
+            ->add('nombre',null,array('attr'=>array('class'=>'ofertaName')))
+            ->add('descripcion','textarea',array('attr'=>array('class'=>'ofertaDescripcion')))
             ->add('imageFile', 'vich_file', array(
                 'required'      => false,
+                 'label' => 'Foto'
 
             ))
-            ->add('menu')
+            ->add('precio', null, array('attr'=>array('class'=>'ofertaPrecio')))
         ;
     }
     

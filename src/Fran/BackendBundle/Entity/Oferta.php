@@ -89,6 +89,14 @@ class Oferta
      */
     protected $imageFile;
 
+
+    /**
+     * @var float
+     * @ORM\Column(name="precio", type="float")
+     * @Assert\NotBlank(message = "Por favor, escriba el nombre")
+     * */
+    protected $precio;
+
     /**
      * @return int
      */
@@ -184,6 +192,17 @@ class Oferta
         return $this->imageFile;
     }
 
+    public function getPrecio()
+    {
+        return $this->precio;
+    }
+
+    public function setPrecio($value)
+    {
+        $this->precio = $value;
+        return $this;
+    }
+
     public function __toString()
     {
         return $this->nombre;
@@ -195,7 +214,8 @@ class Oferta
             $this->getId(),
             $this->getNombre(),
             $this->getDescripcion(),
-            $this->getImagen()
+            $this->getImagen(),
+            $this->precio
         );
     }
 

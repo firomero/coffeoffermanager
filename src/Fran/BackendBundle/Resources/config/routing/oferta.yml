@@ -28,3 +28,7 @@ oferta_delete:
     path:     /{id}/delete
     defaults: { _controller: "BackendBundle:Oferta:delete" }
     requirements: { _method: post|delete }
+#OFERTA AJAX
+oferta_ajax_add:
+    path: /oferta/ajax/add
+    defaults: { _controller: "BackendBundle:Oferta:addOferta" }
