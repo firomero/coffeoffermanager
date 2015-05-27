@@ -291,4 +291,11 @@ class OfertaController extends Controller
             return new Response(json_encode(array('msg'=>$error->getMessage())), 500);
         }
     }
+
+    public function ofertasAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $entities = $em->getRepository('BackendBundle:Oferta')->findAll();
+
+    }
 }
