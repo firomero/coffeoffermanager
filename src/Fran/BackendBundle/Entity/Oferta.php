@@ -97,6 +97,30 @@ class Oferta
      * */
     protected $precio;
 
+
+    /**
+     * @var boolean
+     * @ORM\Column(name="disponible", type="boolean")
+     *
+     * */
+    protected $disponible;
+
+    /**
+     * @param boolean $disponible
+     */
+    public function setDisponible($disponible)
+    {
+        $this->disponible = $disponible;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isDisponible()
+    {
+        return $this->disponible;
+    }
+
     /**
      * @return int
      */

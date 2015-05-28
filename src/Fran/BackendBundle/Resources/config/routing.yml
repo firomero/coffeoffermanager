@@ -9,3 +9,8 @@ backend_bundle_oferta:
 backend_bundle_menu:
     resource: "@BackendBundle/Resources/config/routing/menu.yml"
     prefix: /menu
+
+#HomePage
+admin:
+    pattern: /
+    defaults: {  _controller: "BackendBundle:Oferta:ofertas" }
