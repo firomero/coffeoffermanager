@@ -38,3 +38,15 @@ oferta_ajax_delete:
     defaults: { _controller: "BackendBundle:Oferta:eliminar" }
     options:
         expose: true
+
+oferta_disponibles:
+     path: /disponibles
+     defaults: { _controller: "BackendBundle:Oferta:disponibles" }
+     options:
+          expose: true
+
+oferta_mappings:
+     path: /mappings/image
+     defaults: { _controller: "BackendBundle:Oferta:mappings" }
+     options:
+         expose: true

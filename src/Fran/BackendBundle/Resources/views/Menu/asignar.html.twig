@@ -8,7 +8,7 @@
                 <div class="panel panel-default">
 
                     <div class="panel-heading">
-                        Asginar a {{ menu }}
+                        Asginar a <em class="fmenu" data-ng-model="menu">{{ menu.nombre }}</em>
                         <a class="btn btn-mini pull-right add" title="Adicionar al Menu">
                             <i class="icon-plus"></i>
                         </a>
@@ -16,17 +16,17 @@
                     </div>
 
                     <div class="panel-body">
-                        <div class="row" data-ng-repeat="oferta in ofertas">
-                            <div class="span3">
-                                {{ '{{ oferta.name }}' }}
+                        <div class="row list"  data-ng-repeat="oferta in ofertas">
+                            <div class="col-lg-2">
+                             <div><input type="checkbox"  data-ng-click="asignar($index)" value="{{ '{{ oferta.id}}' }}"  id="{{ '{{ $index}}' }}">  <em data-ng-model="sOferta">{{ '{{ oferta.nombre }}' }}</em> </div>
                             </div>
-                            <div class="span3">
+                            <div class="col-lg-2">
                                 {{ '{{ oferta.descripcion }}' }}
                             </div>
-                            <div class="span3">
-                                {{ '{{ oferta.imageFile }}' }}
+                            <div class="col-lg-2">
+                               <img src=" {{ '{{ prefix }}/{{oferta.imagen }}' }}" class="thumbnail img-table">
                             </div>
-                            <div class="span3">
+                            <div class="col-lg-2">
                                 {{ '{{ oferta.precio }}' }}
                             </div>
 

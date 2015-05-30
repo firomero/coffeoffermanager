@@ -39,3 +39,16 @@ td.actions{
 #right{
     border: none;
 }
+
+.list{
+    border: #dddddd solid 1px;
+}
+
+.list .col-lg-2{
+    border-left: #dddddd solid 1px;
+}
+
+.img-table{
+    width: 60px;
+    height: 60px;
+}

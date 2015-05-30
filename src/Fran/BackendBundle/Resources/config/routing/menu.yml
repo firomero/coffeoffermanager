@@ -29,6 +29,10 @@ menu_delete:
     defaults: { _controller: "BackendBundle:Menu:delete" }
     requirements: { _method: post|delete }
 
+menu_asignar:
+    path: /asignar/oferta/{menu}
+    defaults: { _controller: "BackendBundle:Menu:asignar"}
+
 
 #AJAX
 menu_ajax_add:
@@ -41,5 +45,10 @@ menu_ajax_edit:
     path: /edit/issue/
     defaults: { _controller: "BackendBundle:Menu:editMenu"  }
     requirements: { _method: post }
+    options:
+        expose: true
+menu_ajax_asignar:
+    path: /asignar/issue/oferta
+    defaults: { _controller: "BackendBundle:Menu:activar" }
     options:
         expose: true

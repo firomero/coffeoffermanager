@@ -319,4 +319,27 @@ class OfertaController extends Controller
         $entities = $em->getRepository('BackendBundle:Oferta')->findAll();
 
     }
+
+    public function disponiblesAction(){
+        $em = $this->getDoctrine()->getManager();
+        $ofertas = $em->getRepository('BackendBundle:Oferta')->findBy(array('disponible'=>true));
+        try{
+            $dataResult = array();
+            foreach ($ofertas as $oferta) {
+                $dataResult[]=$oferta->NormalizedAssoc();
+            }
+            return new Response(json_encode($dataResult),200);
+        }
+        catch(\Exception $e)
+        {
+            return new Response($e->getMessage(),500);
+        }
+    }
+
+    public function mappingsAction(){
+        $param = $this->container->getParameter('vich_uploader.mappings');
+        return new Response(json_encode($param),200);
+    }
+
+
 }

@@ -208,6 +208,11 @@ class MenuController extends Controller
         return $this->redirect($this->generateUrl('menu'));
     }
 
+    public function asignarAction(Menu $menu)
+    {
+        return $this->render('BackendBundle:Menu:asignar.html.twig',array('menu'=>$menu));
+    }
+
     /**
      * Creates a form to delete a Menu entity by id.
      *
@@ -286,5 +291,28 @@ class MenuController extends Controller
         {
             return new Response(json_encode(array('msg'=>$error->getMessage())), 500);
         }
+    }
+
+    public function activarAction(Request $request)
+    {
+        $menu = $request->get('menu');
+        $oferta = $request->get('oferta');
+        $em = $this->getDoctrine()->getManager();
+        $menuEntity = $em->getRepository('BackendBundle:Menu')->findOneBy(array('nombre'=>$menu));
+       try{
+           $ofertaEntity = $em->getRepository('BackendBundle:Oferta')->find($oferta);
+           if ($menuEntity->getOfertas()->contains($ofertaEntity)) {
+               $menuEntity->getOfertas()->remove($ofertaEntity->getId());
+           }
+           $menuEntity->addOfertas($ofertaEntity);
+           $em->flush();
+           return new Response(json_encode(array()),200);
+
+       }
+       catch(\Exception $e)
+       {
+           return new Response($e->getMessage(),500);
+       }
+
     }
 }

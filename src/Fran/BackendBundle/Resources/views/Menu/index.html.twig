@@ -30,7 +30,7 @@
                                         <td class="name{{ entity.id }}">{{ entity.nombre }}</td>
                                         <td class="actions">
                                             <div class="hidden-phone visible-desktop btn-group">
-                                                <button class="btn btn-mini assign" title="Asginar Ofertas" ><i class="icon-list"></i></button>
+                                                <a class="btn btn-mini assign" title="Asginar Ofertas" href="{{ path('menu_asignar',{'menu':entity.id}) }}"><i class="icon-list"></i></a>
                                                 <button class="btn btn-mini edit" title="Editar" data-id="{{ entity.id }}" data-name="{{ entity.nombre }}"><i class="icon-edit"></i></button>
                                                 <button class="btn btn-mini delete" title="Eliminar" data-id="{{ entity.id }}"><i class="icon-trash" ></i></button>
                                             </div>

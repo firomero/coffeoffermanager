@@ -243,4 +243,15 @@ class Oferta
         );
     }
 
+    public function NormalizedAssoc()
+    {
+        return array(
+            'id'=>$this->getId(),
+            'nombre'=>$this->getNombre(),
+            'descripcion'=>$this->getDescripcion(),
+            'imagen'=>$this->getImagen(),
+            'precio'=>$this->precio
+        );
+    }
+
 }
