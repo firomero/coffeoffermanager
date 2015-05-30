@@ -78,7 +78,7 @@ vich_uploader:
     twig: true
     mappings:
         imageFile:
-            uri_prefix:         /framboyan/web/public/images
+            uri_prefix:         /framboyan/public/images
             upload_destination: %kernel.root_dir%/../web/public/images
             namer: oferta.namer
 
