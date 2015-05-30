@@ -19,9 +19,10 @@ $(function () {
             {
                 "oLanguage": $language,
 
-                "aLengthoferta": [5, 10, 15],
+                "aLength": [5, 10, 15],
                 aoColumns: [
                     null,
+                    {"bSortable": false},
                     {"bSortable": false},
                     {"bSortable": false},
                     {"bSortable": false},
@@ -48,28 +49,16 @@ $(function () {
         $('form').submit();
     });
 
-    //EDIT oferta
-    $('.btn.btn-mini.edit').click(function () {
 
-        var $btnEdit = $(this);
-        var $saveBtn = $('.btn.btn-primary.acept');
+    //DELETE
+    $('.btn.btn-mini.delete').click(function(){
+        var object = $(this);
+        var $deleteModal = $('#myModalDelete');
+        $deleteModal.find('.delete').click(function(){
+            $ofertaObject.deleteoferta(object);
+        });
 
-        $saveBtn.off('click');
-        $saveBtn.click(function () {
-            $ofertaObject.editoferta($btnEdit);
-        });
-        var $modalView = $('#myModalAdd');
-        $modalView.modal();
-        $modalView.find('#myModalLabel').text('Editar oferta');
-        $modalView.find('#ofertaText').val($btnEdit.data('name'));
-        $modalView.on('hide.bs.modal', function () {
-            $saveBtn.off('click');
-            $saveBtn.click(function () {
-                $ofertaObject.addoferta();
-            });
-            $modalView.find('#myModalLabel').text('Adicionar oferta');
-        });
-        $modalView.modal('show');
+        $deleteModal.modal('show');
     });
 
 
@@ -150,7 +139,8 @@ $ofertaObject.editoferta = function (object) {
 
 $ofertaObject.deleteoferta = function (object) {
     var id = $(object).data('id');
-    $.delete(
+    $('.se-pre-con').removeClass('hidden');
+    $.post(
         Routing.generate('oferta_ajax_delete'),
         {
             id: id
@@ -158,7 +148,8 @@ $ofertaObject.deleteoferta = function (object) {
         function (data, text, response) {
             if (response.status == 204) {
 
-                $('#myModalAdd').modal('hide');
+                $('.se-pre-con').addClass('hidden');
+                $('#myModalDelete').modal('hide');
                 location.reload();
             }
         },

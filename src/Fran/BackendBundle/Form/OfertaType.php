@@ -23,6 +23,7 @@ class OfertaType extends AbstractType
 
             ))
             ->add('precio', null, array('attr'=>array('class'=>'ofertaPrecio')))
+            ->add('disponible')
         ;
     }
     

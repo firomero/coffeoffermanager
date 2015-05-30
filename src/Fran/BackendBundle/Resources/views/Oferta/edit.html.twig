@@ -1,16 +1,62 @@
-{% extends '::base.html.twig' %}
+{% extends 'BackendBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>Oferta edit</h1>
+{% block content -%}
 
-    {{ form(edit_form) }}
+    <div class="inner">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="panel panel-default">
 
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('oferta') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+                    <div class="panel-heading">
+                        Editar Oferta
+                        {{ form_errors(edit_form) }}
+                    </div>
+
+                    <div class="panel-body">
+                        <form role="form" enctype="multipart/form-data" action="{{ path('oferta_update',{id: entity.id}) }}" method="post" class="form-horizontal">
+                            <div class="form-group">
+                               {{ form_label(edit_form.nombre,'Nombre',{'label_attr':{ 'class':'control-label col-lg-4' }}) }}
+                               <div class="col-lg-4">
+                                   {{ form_widget(edit_form.nombre) }}
+                               </div>
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(edit_form.descripcion,'Descripcion',{'label_attr':{ 'class':'control-label col-lg-4' }}) }}
+                                <div class="col-lg-4">
+                                {{ form_widget(edit_form.descripcion) }}
+                                </div>
+
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(edit_form.precio,'Precio',{'label_attr':{ 'class':'control-label col-lg-4' }}) }}
+                                <div class="col-lg-4">
+                                    {{ form_widget(edit_form.precio) }}
+                                    </div>
+                            </div>
+
+                            <div class="form-group">
+                                {{ form_label(edit_form.disponible,'Disponible',{'label_attr':{ 'class':'control-label col-lg-4' }}) }}
+                                <div class="col-lg-4">
+                                {{ form_widget(edit_form.disponible) }}
+                                    </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-lg-8 pull-right">
+                                <button class="btn btn-primary acept" type="submit">Guardar</button>
+                                    </div>
+                            </div>
+                            <div class="hidden">
+
+                                {{ form_rest(edit_form) }}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
 {% endblock %}

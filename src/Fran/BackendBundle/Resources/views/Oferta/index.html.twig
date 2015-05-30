@@ -22,6 +22,7 @@
                                     <th>Descripción</th>
                                     <th>Imagen</th>
                                     <th>Precio</th>
+                                    <th>Disponible</th>
                                     <th>Acciones</th>
                                 </tr>
                                 </thead>
@@ -37,9 +38,16 @@
 
                                         </td>
                                         <td>{{ entity.precio }}</td>
+                                        <td>
+                                            {% if entity.disponible %}
+                                               Sí
+                                            {% else %}
+                                               No
+                                            {% endif %}
+                                        </td>
                                         <td class="actions">
                                             <div class="hidden-phone visible-desktop btn-group">
-                                                <button class="btn btn-mini edit" title="Editar" data-id="{{ entity.id }}" data-name="{{ entity.nombre }}"><i class="icon-edit"></i></button>
+                                                <a class="btn btn-mini edit" title="Editar" href="{{ path('oferta_edit',{id: entity.id}) }}" data-id="{{ entity.id }}" data-name="{{ entity.nombre }}"><i class="icon-edit"></i></a>
                                                 <button class="btn btn-mini delete" title="Eliminar" data-id="{{ entity.id }}"><i class="icon-trash" ></i></button>
                                             </div>
                                         </td>
@@ -87,6 +95,12 @@
                           {{ form_widget(form.precio) }}
                           {#<input type="text" id="ofertaPrecio" placeholder="Precio"/>#}
                       </div>
+
+                      <div class="form-group">
+                          <label for="ofertaDisponible">Disponible</label>
+                          {{ form_widget(form.disponible) }}
+                          {#<input type="text" id="ofertaPrecio" placeholder="Precio"/>#}
+                      </div>
                       <div class="se-pre-con hidden"></div>
                       {{ form_rest(form) }}
                   </form>
@@ -98,6 +112,27 @@
             </div>
         </div>
     </div>
+
+    {#Confirm#}
+    <div aria-hidden="true" aria-labelledby="myModalLabel" role="dialog" tabindex="-1" id="myModalDelete" class="modal fade" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+                    <h4 id="myModalLabel" class="modal-title">Adicionar Oferta</h4>
+                </div>
+                <div class="modal-body">
+                    Eliminar la oferta
+                </div>
+                <div class="se-pre-con hidden"></div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-default" type="button">Cancelar</button>
+                    <button class="btn btn-primary delete" type="button">Aceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     {% endblock %}
 {% block JavaScriptInline %}
     <script src="{{ asset('bundles/backend/js/oferta.js') }}"></script>

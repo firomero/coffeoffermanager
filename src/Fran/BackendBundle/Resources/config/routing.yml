@@ -13,4 +13,4 @@ backend_bundle_menu:
 #HomePage
 admin:
     pattern: /
-    defaults: {  _controller: "BackendBundle:Oferta:ofertas" }
+    defaults: {  _controller: "BackendBundle:Oferta:index" }

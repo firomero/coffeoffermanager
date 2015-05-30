@@ -3,6 +3,7 @@
 namespace Fran\BackendBundle\Controller;
 
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 use Fran\BackendBundle\Entity\Oferta;
@@ -127,12 +128,12 @@ class OfertaController extends Controller
         }
 
         $editForm = $this->createEditForm($entity);
-        $deleteForm = $this->createDeleteForm($id);
+//        $deleteForm = $this->createDeleteForm($id);
 
         return $this->render('BackendBundle:Oferta:edit.html.twig', array(
             'entity'      => $entity,
             'edit_form'   => $editForm->createView(),
-            'delete_form' => $deleteForm->createView(),
+//            'delete_form' => $deleteForm->createView(),
         ));
     }
 
@@ -150,7 +151,7 @@ class OfertaController extends Controller
             'method' => 'PUT',
         ));
 
-        $form->add('submit', 'submit', array('label' => 'Update'));
+//        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -171,12 +172,15 @@ class OfertaController extends Controller
         $deleteForm = $this->createDeleteForm($id);
         $editForm = $this->createEditForm($entity);
         $editForm->handleRequest($request);
+        $editForm->submit($request);
 
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('oferta_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('oferta'));
         }
+
+        var_dump($editForm->getErrorsAsString()); exit;
 
         return $this->render('BackendBundle:Oferta:edit.html.twig', array(
             'entity'      => $entity,
@@ -260,7 +264,7 @@ class OfertaController extends Controller
         }
     }
 
-    public function editMenuAction(Request $request)
+    public function editOfertaAction(Request $request)
     {
         $menuId = $request->get('id');
         $menuName = $request->get('ofertaName');
@@ -289,6 +293,23 @@ class OfertaController extends Controller
         catch(\Exception $error)
         {
             return new Response(json_encode(array('msg'=>$error->getMessage())), 500);
+        }
+    }
+
+    public function eliminarAction(Request $request)
+    {
+        $id = $request->get('id');
+        try{
+            $em = $this->get('doctrine')->getManager();
+            $oferta = $em->getRepository('BackendBundle:Oferta')->find($id);
+            $em->remove($oferta);
+            $em->flush();
+            return new Response(json_encode(array()), 204);
+
+        }
+        catch(\Exception $e)
+        {
+            return new Response($e->getMessage(),500);
         }
     }
 

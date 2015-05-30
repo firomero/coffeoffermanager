@@ -32,3 +32,9 @@ oferta_delete:
 oferta_ajax_add:
     path: /oferta/ajax/add
     defaults: { _controller: "BackendBundle:Oferta:addOferta" }
+
+oferta_ajax_delete:
+    path: /oferta/ajax/delete
+    defaults: { _controller: "BackendBundle:Oferta:eliminar" }
+    options:
+        expose: true
