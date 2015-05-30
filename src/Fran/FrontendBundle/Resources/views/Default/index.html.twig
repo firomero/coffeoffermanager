@@ -1,1 +1,59 @@
+<!DOCTYPE html>
+<html data-ng-app="sliderApp">
+<head>
+    <meta charset="UTF-8">
+    <title>angular-carousel demo</title>
+    <meta name="viewport" content="width=620, user-scalable=no">
+    <link rel="stylesheet" href="{{asset('public/css/angular-carousel.css')}}" />
+
+</head>
+<body data-ng-controller="screenController">
+
+<h1>AngularJS Touch Carousel</h1>
+<div class='intro'>
+    Transform your ng-repeat or DOM nodes in a mobile-friendly carousel just by adding a 'rn-carousel' attribute to your HTML; AngularJS directives FTW :)<br><br>
+    Carousels are data-bound to your ngRepeat collections and can be DOM buffered (good for performance)
+    <br><br>
+    Swipe these demos with your mouse or finger
+</div>
+
+<div>
+    <div>
+        <h3>Buffered ngRepeat demo</h3>
+        <div class="details">A simple buffered ng-repeat with a custom template.
+            <br>
+            Swipe 50 slides with only 5 slides in the DOM. use builtin controls
+        </div>
+        <div class="carousel-demo">
+            <ul rn-carousel rn-carousel-controls class="carousel1">
+                <li ng-repeat="slide in slides ">
+                    <div class="name">
+                        {{ '{{ slide.nombre }}' }}
+                    </div>
+                    <div   class="bgimage">
+                        <img src="{{ '{{ prefix / slide.imagen }}' }}">
+                       {{ ' #{{ slide.id }}' }}
+                    </div>
+
+                    <div class="description">
+                        {{ '{{ slide.descripcion }}' }}
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div>
+    </div>
+
+</div>
+
+</body>
+<script src="{{ asset('public/js/angular.js') }}"></script>
+<script src="{{ asset('public/js/angular-mobile.js') }}"></script>
+<script src="{{ asset('public/js/angular-touch.js') }}"></script>
+<script src="{{ asset('public/js/angular-carousel.js') }}"></script>
+<script src="{{ asset('bundles/frontend/js/frontend.js') }}"></script>
+<script src="{{ asset('bundles/fosjsrouting/js/router.js') }}"></script>
+<script src="{{ path('fos_js_routing_js', {"callback": "fos.Router.setData"}) }}"></script>
+</html>
 
