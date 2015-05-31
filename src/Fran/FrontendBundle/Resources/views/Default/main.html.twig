@@ -1,0 +1,63 @@
+{# Twig template #}
+{% extends '::base.html.twig' %}
+{#Menu#}
+ {% block menu %}
+
+     </div>
+     <!--END MENU SECTION -->
+ {% endblock %}
+
+ {#Right Content#}
+ {% block right %}
+ {% endblock %}
+{#First Row#}
+ {% block Shortcut %}
+
+ {% endblock %}
+{% block content -%}
+    <div class="inner">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="table-responsive">
+                        <table id="tabla" class="table table-striped table-bordered table-hover">
+                            <thead>
+                               <tr>
+                                   <th>Imagen</th>
+                                   <th>Nombre</th>
+                                   <th>Precio</th>
+                               </tr>
+                            </thead>
+                            <tbody>
+                            {% for entity in ofertas %}
+                               <tr>
+                                   <td class="pc20">
+                                       <div>
+                                           <img class="img-table" src="{{ vich_uploader_asset(entity, 'imageFile') }}"/>
+                                       </div>
+
+                                   </td>
+                                   <td class="pc50">{{ entity.nombre }}</td>
+                                   <td class="pc30">{{ entity.precio }} CUP</td>
+                               </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+ {% block javascript %}
+     {{ parent() }}
+     <script src="{{ asset('bundles/frontend/js/frontendTable.js') }}"></script>
+ {% endblock %}
+ {% block  stylesheet %}
+     <link href="{{ asset('public/css/extends.css') }}" rel="stylesheet"/>
+     <link href="{{ asset('bundles/frontend/css/frontend.css') }}" rel="stylesheet"/>
+ {% endblock stylesheet %}

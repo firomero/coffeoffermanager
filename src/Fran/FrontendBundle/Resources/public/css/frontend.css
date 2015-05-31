@@ -1,0 +1,139 @@
+/*
+*@author firomerorom4@gmail.com
+*
+*/
+ul
+table img{
+    width: 15em;
+    height: 15em;
+}
+
+
+/*
+*@author firomerorom4@gmail.com
+*
+*/
+
+.close{
+    cursor: pointer;
+}
+
+/*Loading image*/
+.no-js #loader { display: none;  }
+.js #loader { display: block; position: absolute; left: 100px; top: 0; }
+.se-pre-con {
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: url('Preloader_8.gif') center no-repeat #fff;
+}
+
+/*RESPONSIVE*/
+
+
+.tbanner{
+    float: left;
+    margin-left: -21em;
+}
+
+
+@media screen and (min-width: 800px) {
+
+    .tbanner{
+        float: left;
+        margin-left: -2em;
+
+    }
+
+}
+
+@media screen and (min-width: 499px) {
+
+    .tbanner{
+        float: left;
+        margin-left: -14em;
+    }
+
+}
+
+@media screen and (min-width: 370px) {
+
+    .tbanner{
+        float: left;
+        margin-left: -25em;
+    }
+
+}
+
+@media screen and (min-width: 320px) {
+
+    .tbanner{
+        float: left;
+        margin-left: -21em;
+    }
+
+}
+
+
+
+
+
+.form-group input{
+    margin-left: 7.2em;
+}
+
+.imagen{
+    margin-top: -2em;
+}
+
+#ofertaNamne, .form-group input.ofertaName{
+    margin-left: 3.2em;
+}
+
+#ofertaText, .form-group input.ofertaDescripcion{
+    margin-left: 1.2em;
+}
+
+#ofertaPrecio, .form-group input.ofertaPrecio{
+    margin-left: 3.4em;
+}
+
+/*DATATABLES*/
+td.actions{
+    text-align: right;
+    width: 25%;
+}
+
+.img-table{
+    width: 60px;
+    height: 60px;
+}
+
+/*GENERAL*/
+#left{
+    min-width: 250px;
+}
+
+#right{
+    border: none;
+}
+
+.pc20{
+     width: 20%;
+ }
+
+.pc30{
+    width: 30%;
+}
+
+.pc50{
+    width: 50%;
+}
+
+.inner{
+    margin-top: 5em;
+
+}

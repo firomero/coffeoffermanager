@@ -5,6 +5,7 @@
     <title>angular-carousel demo</title>
     <meta name="viewport" content="width=620, user-scalable=no">
     <link rel="stylesheet" href="{{asset('public/css/angular-carousel.css')}}" />
+    <link rel="stylesheet" href="{{asset('public/css/demo.css')}}" />
 
 </head>
 <body data-ng-controller="screenController">
@@ -25,14 +26,13 @@
             Swipe 50 slides with only 5 slides in the DOM. use builtin controls
         </div>
         <div class="carousel-demo">
-            <ul rn-carousel rn-carousel-controls class="carousel1">
-                <li ng-repeat="slide in slides ">
+            <ul rn-carousel rn-carousel-controls rn-carousel-index="carouselIndex2" rn-carousel-buffered class="carousel2">
+                <li ng-repeat="slide in slides">
                     <div class="name">
                         {{ '{{ slide.nombre }}' }}
                     </div>
                     <div   class="bgimage">
-                        <img src="{{ '{{ prefix / slide.imagen }}' }}">
-                       {{ ' #{{ slide.id }}' }}
+                        <img src="{{ '{{ prefix }}/{{slide.imagen }}' }}"/>
                     </div>
 
                     <div class="description">
@@ -40,6 +40,7 @@
                     </div>
                 </li>
             </ul>
+            <div rn-carousel-indicators ng-if="slides.length > 1" slides="slides" rn-carousel-index="carouselIndex2">
         </div>
     </div>
     <div>

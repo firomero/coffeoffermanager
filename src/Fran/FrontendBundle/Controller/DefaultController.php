@@ -22,4 +22,18 @@ class DefaultController extends Controller
            return new Response($e->getMessage(),500);
        }
     }
+
+    public function mappingsAction()
+    {
+        $param = $this->container->getParameter('vich_uploader.mappings');
+        return new Response(json_encode($param),200);
+    }
+
+    public function homepageAction()
+    {
+        $em = $this->getDoctrine()->getManager();
+        $ofertas = $em->getRepository('BackendBundle:Oferta')->findBy(array('disponible'=>true));
+        return $this->render('FrontendBundle:Default:main.html.twig', array('ofertas'=>$ofertas));
+    }
+
 }
