@@ -1,7 +1,7 @@
 {
   
-    "name": "ByCotProject",
-    "license": "ANK",
+    "name": "OffersProject",
+    "license": "MIT",
     "type": "project",
   
     "autoload": {
@@ -54,15 +54,5 @@
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         }
-    },
-    "repositories": [
-        {
-            "packagist": false
-        },
-        {
-            "type": "composer",
-            "url": "http://composer.prod.uci.cu:8080"
-        }
-    ]
-
+    }
 }
